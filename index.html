@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Borel&display=swap" rel="stylesheet">
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            /* Fallback font family */
+            text-align: center;
+            /* Center-align text */
+            margin: 0;
+            /* Remove default margin */
+            background-color: #FADADD;
+            /* Light pink background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            /* Full viewport height */
+        }
+
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            /* Adds spacing between elements */
+            max-width: 90%;
+            /* Ensures it doesn't stretch too much */
+            text-align: center;
+        }
+
+        #image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            /* Allows wrapping for responsiveness */
+            gap: 15px;
+        }
+
+        #question {
+            font-family: 'Borel', cursive;
+            font-size: 52px;
+            color: #D72638;
+            /* Adds contrast for readability */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            /* Subtle text shadow */
+            margin: 10px 0;
+        }
+
+        #options {
+            display: flex;
+            flex-wrap: wrap;
+            /* Allows wrapping on smaller screens */
+            justify-content: center;
+            gap: 15px;
+            /* Provides spacing between buttons */
+        }
+
+        button {
+            padding: 12px;
+            font-size: 26px;
+            font-family: 'Borel', cursive;
+            background-color: #FB607F;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            /* Rounded corners for a softer look */
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+            /* Adds depth */
+        }
+
+        button:hover {
+            background-color: #D72638;
+            /* Darker shade on hover */
+            transform: translateY(-2px);
+            /* Slight lift effect */
+        }
+
+        button:active {
+            transform: translateY(1px);
+            /* Press effect */
+        }
+
+        /* Add this to your CSS file or inside <style> tags */
+        .custom-message {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 10px;
+            color: #FF69B4;
+            /* Hot pink color */
+            font-family: 'Borel', cursive;
+            /* Fun font */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="image-container"></div> <!-- Container for displaying images -->
+        <div id="text-container">
+            <div id="question">Will you be my valentine?</div> <!-- Question -->
+            <div id="options">
+                <button id="yes-button" onclick="selectOption('yes')">Yes</button> <!-- Yes button -->
+                <button id="no-button" onclick="selectOption('no')">No</button> <!-- No button -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to handle button click events
+        function selectOption(option) {
+            // Check which option was clicked
+            if (option === 'yes') {
+                // Flash rainbow colors
+                flashRainbowColors(function () {
+                    document.getElementById('question').style.display = 'none'; // Hide the question
+                    displayCatHeart(); // Display the cat-heart.gif
+                });
+            } else if (option === 'no') {
+                // Change text on the "No" button to "You sure?"
+                document.getElementById('no-button').innerText = 'You sure?';
+                // Increase font size of "Yes" button
+                var yesButton = document.getElementById('yes-button');
+                var currentFontSize = window.getComputedStyle(yesButton).getPropertyValue('font-size');
+                var newSize = parseFloat(currentFontSize) * 2; // Increase font size by 2x
+                yesButton.style.fontSize = newSize + 'px';
+
+                // Display huh.gif
+                displayHuhGif();
+            } else {
+                // If neither "Yes" nor "No" was clicked, show an alert message
+                alert('Invalid option!');
+            }
+        }
+
+
+        // Function to display huh.gif when clicking "No"
+        function displayHuhGif() {
+            // Clear existing content in the image container
+            document.getElementById('image-container').innerHTML = '';
+            // Get the container where the image will be displayed
+            var imageContainer = document.getElementById('image-container');
+            // Create a new Image element for the huh.gif
+            var huhImage = new Image();
+            // Set the source (file path) for the huh.gif
+            huhImage.src = 'huh.gif'; // Assuming the huh image is named "huh.gif"
+            // Set alternative text for the image (for accessibility)
+            huhImage.alt = 'Huh?';
+            // When the huh image is fully loaded, add it to the image container
+            huhImage.onload = function () {
+                imageContainer.appendChild(huhImage);
+            };
+        }
+
+        // Function to flash rainbow colors and then execute a callback function
+        function flashRainbowColors(callback) {
+            var colors = ['#FFB3BA', '#FFDFBA', '#FFFFBA', '#BAFFC9', '#BAE1FF', '#D7BAFF', '#FFCCE5'];
+            var i = 0;
+            var interval = setInterval(function () {
+                document.body.style.backgroundColor = colors[i];
+                i = (i + 1) % colors.length;
+            }, 200); // Change color every 200 milliseconds
+            setTimeout(function () {
+                clearInterval(interval);
+                document.body.style.backgroundColor = ''; // Reset background color
+                if (callback) {
+                    callback();
+                }
+            }, 2000); // Flash colors for 2 seconds
+        }
+
+        // Function to display the cat.gif initially
+        function displayCat() {
+            // Get the container where the image will be displayed
+            var imageContainer = document.getElementById('image-container');
+            // Create a new Image element for the cat
+            var catImage = new Image();
+            // Set the source (file path) for the cat image
+            catImage.src = 'star.gif'; // Assuming the cat image is named "cat.gif"
+            // Set alternative text for the image (for accessibility)
+            catImage.alt = 'Cat';
+            // When the cat image is fully loaded, add it to the image container
+            catImage.onload = function () {
+                imageContainer.appendChild(catImage);
+            };
+        }
+
+        // Function to display the cat-heart.gif
+        function displayCatHeart() {
+            // Clear existing content in the image container
+            document.getElementById('image-container').innerHTML = '';
+            // Get the container where the image will be displayed
+            var imageContainer = document.getElementById('image-container');
+            // Create a new Image element for the cat-heart
+            var catHeartImage = new Image();
+            // Set the source (file path) for the cat-heart image
+            catHeartImage.src = 'cat-heart.gif'; // Assuming the cat-heart image is named "cat-heart.gif"
+            // Set alternative text for the image (for accessibility)
+            catHeartImage.alt = 'Cat Heart';
+            // When the cat-heart image is fully loaded, add it to the image container
+            catHeartImage.onload = function () {
+                imageContainer.appendChild(catHeartImage);
+                // Hide the options container
+                document.getElementById('options').style.display = 'none';
+                // Create a text message element
+                var message = document.createElement('p');
+                message.innerText = "Yay! Happy Valentine's Day! ❤️";
+
+                // Apply the custom CSS class
+                message.classList.add('custom-message');
+
+                // Append the message below the image
+                imageContainer.appendChild(message);
+            };
+        }
+
+        // Display the cat.gif initially
+        displayCat();
+    </script> <!-- Link to external JavaScript file -->
+</body>
+
+</html>
