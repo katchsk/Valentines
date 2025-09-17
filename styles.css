@@ -1,0 +1,94 @@
+body {
+    font-family: Arial, sans-serif;
+    /* Fallback font family */
+    text-align: center;
+    /* Center-align text */
+    margin: 0;
+    /* Remove default margin */
+    background-color: #FADADD;
+    /* Light pink background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* Full viewport height */
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    /* Adds spacing between elements */
+    max-width: 90%;
+    /* Ensures it doesn't stretch too much */
+    text-align: center;
+}
+
+#image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    /* Allows wrapping for responsiveness */
+    gap: 15px;
+}
+
+#question {
+    font-family: 'Borel', cursive;
+    font-size: 52px;
+    color: #D72638;
+    /* Adds contrast for readability */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    /* Subtle text shadow */
+    margin: 10px 0;
+}
+
+#options {
+    display: flex;
+    flex-wrap: wrap;
+    /* Allows wrapping on smaller screens */
+    justify-content: center;
+    gap: 15px;
+    /* Provides spacing between buttons */
+}
+
+button {
+    padding: 12px;
+    font-size: 26px;
+    font-family: 'Borel', cursive;
+    background-color: #FB607F;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    /* Rounded corners for a softer look */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+    /* Adds depth */
+}
+
+button:hover {
+    background-color: #D72638;
+    /* Darker shade on hover */
+    transform: translateY(-2px);
+    /* Slight lift effect */
+}
+
+button:active {
+    transform: translateY(1px);
+    /* Press effect */
+}
+
+/* Add this to your CSS file or inside <style> tags */
+.custom-message {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+    color: #FF69B4;
+    /* Hot pink color */
+    font-family: 'Borel', cursive;
+    /* Fun font */
+}
